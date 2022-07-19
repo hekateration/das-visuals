@@ -1,0 +1,273 @@
+*:before, *, *:after
+{
+  box-sizing: border-box;
+}
+
+:root
+{
+  --red: #c8042e;
+  --red-light: #e896a7;
+  --pink: #c42870;
+  --pink-dark: #ac2161;
+  --purple: #8620de;
+  --purple-dark: #551091;
+  --blue: #0365c6;
+  --blue-light: #edebfa;
+  --blue-bright: #2e84ed;
+  --green: #3f5c00;
+  --green-light: #499d8b;
+  --green-bright: #069c0b;
+  --text-primary: #2b3039;
+  --text-secondary: #3f444f;
+  --text-tertiary: #495d86;
+  --purple-gray-light: #e1caf7;
+  --yellow: #ffe200;
+  --yellow-light: #fff07b;
+  --brown: #382515;
+}
+
+html
+{
+  height: 100%;
+}
+
+body
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+h1, h2
+{
+  font-weight: 400;
+}
+
+h2, p
+{
+  margin-top: 0;
+}
+
+.main-menu
+{
+  position: relative;
+  z-index: 100;
+  height: 42px;
+  background-color: #fff;
+  font-size: 16px;
+  text-align: center;
+  line-height: 42px;
+  box-shadow: 0 0 1px 2px rgba(0,0,0,.3);
+}
+
+a
+{
+  margin: 0 6px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+a:hover
+{
+  border-bottom: 2px solid var(--text-primary);
+}
+.main-menu a
+{
+  color: var(--text-tertiary);
+}
+.main-menu a:hover
+{
+  border-bottom: 2px solid var(--text-tertiary);
+}
+.main-menu .title
+{
+  color: var(--purple-dark);
+}
+
+/*
+  Colors
+ */
+.color-blue
+{
+  color: var(--blue);
+}
+.color-green
+{
+  color: var(--green);
+}
+.color-green-bright
+{
+  color: var(--green-bright);
+}
+.color-pink
+{
+  color: var(--pink);
+}
+.color-purple
+{
+  color: var(--purple);
+}
+.color-red
+{
+  color: var(--red);
+}
+.color-tt
+{
+  color: var(--text-tertiary);
+}
+.gt-ds
+{
+  background: linear-gradient(to right, var(--blue) 0%, var(--blue-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gt-alg
+{
+  background: linear-gradient(to right, var(--green) 0%, var(--green-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/*
+  Layout
+ */
+.fl
+{
+  display: flex;
+}
+.mc
+{
+  justify-content: center;
+}
+
+/*
+  Lists
+ */
+ul
+{
+  padding-left: 20px;
+}
+ul li::marker
+{
+  content: '⦾ ';
+  color: var(--purple-dark);
+}
+ul li:not(:last-child)
+{
+  margin-bottom: 5px;
+}
+
+/*
+  Footer
+ */
+.footer
+{
+  margin-top: auto;
+  padding: 18px 0;
+  background-color: rgba(223,226,235,.24);
+  color: var(--text-tertiary);
+  font-size: 16px;
+  text-align: center;
+}
+.footer .text-muted
+{
+  color: #67718a;
+}
+
+/*
+  DAS pages
+ */
+.container
+{
+  display: flex;
+  width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+}
+.sidebar, .content
+{
+  height: 100%;
+  padding: 12px 24px;
+}
+.sidebar > h1.title
+{
+  margin: 0;
+  font-size: 20px;
+}
+.content
+{
+  width: 1048px;
+}
+
+button
+{
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  margin-top: 6px;
+  border: 1px solid #333;
+  line-height: 28px;
+  padding: 0 12px;
+  background-color: rgba(255,255,255,.01);
+  cursor: pointer;
+  font-family: Consolas, Monaco, 'Lucida Console', monospace;
+  font-size: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+button:after
+{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: 12px;
+  background-color: var(--brown);
+  transition: transform .1s ease;
+
+}
+button:hover:after
+{
+  transform: translateX(9px);
+}
+
+.operations, .states
+{
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.operations > .title, .states > .title
+{
+  color: var(--text-tertiary);
+}
+.btn-hit
+{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: 12px;
+  background-color: var(--yellow-light);
+  animation: btn-hit-anime 1s linear forwards;
+}
+.btn-hit.cant
+{
+  background-color: var(--red-light);
+}
+
+@keyframes btn-hit-anime
+{
+  to { left: 100%; }
+}
+
+.hidden
+{
+  opacity: 0;
+  user-select: none;
+}

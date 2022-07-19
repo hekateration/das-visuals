@@ -1,0 +1,163 @@
+.square
+{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--brown);
+  text-align: center;
+  line-height: 48px;
+}
+.square.cover
+{
+  z-index: 200;
+  background-color: #fff;
+}
+.square.element
+{
+  transition: transform .2s ease;
+}
+.oldies .square, .goldies .square
+{
+  margin-left: -1px;
+}
+#no
+{
+  margin-bottom: 48px;
+}
+.oldies, .goldies
+{
+  position: relative;
+  display: flex;
+}
+.oldies
+{
+  margin-left: 50px;
+  margin-bottom: -1px;
+}
+.goldies
+{
+  margin-top: 49px;
+}
+.domain-coverbar
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -1px;
+  overflow: hidden;
+}
+.coverbar
+{
+  position: relative;
+  z-index: 100;
+  top: 0;
+  left: 950px;
+  bottom: 0;
+  width: 950px;
+  height: 50px;
+  background-color: #fff;
+}
+
+.mt100
+{
+  margin-top: 100px;
+}
+.no-border
+{
+  border-color: #fff;
+}
+
+.domain-info
+{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.info
+{
+  position: relative;
+  width: 420px;
+  padding-bottom: 6px;
+  overflow: hidden;
+  transition: opacity .3s ease;
+}
+.progress
+{
+  position: relative;
+  height: 30px;
+  background-color: var(--yellow-light);
+  transition: opacity .3s ease;
+}
+.progress:after
+{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -24px;
+  width: 24px;
+  background-color: var(--red);
+  transition: transform .1s ease;
+}
+.progress.in-progress:after
+{
+  transform: translateX(12px);
+}
+.progress-title
+{
+  position: relative;
+  z-index: 100;
+  text-align: center;
+  line-height: 30px;
+}
+.progress-inner
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.cant-progress
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -24px;
+  width: 24px;
+  background-color: var(--red);
+  animation: cant-progress-anime 1s linear forwards;
+}
+
+@keyframes cant-progress-anime
+{
+  to { left: 100%; }
+}
+
+.move-cover
+{
+  animation: cover-anime .3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes cover-anime
+{
+  from { opacity: 1; }
+  to { opacity: 1; transform: translateY(198px); }
+}
+.move-el-down
+{
+  animation: move-el-down-anime .6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes move-el-down-anime
+{
+  to { transform: translateY(49px); }
+}
+.move-el-up
+{
+  animation: move-el-up-anime .6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes move-el-up-anime
+{
+  to { transform: translateY(-49px); }
+}
