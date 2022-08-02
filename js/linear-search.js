@@ -30,7 +30,7 @@ const buttonDetails =
 async function linearSearch(options)
 {
   if (state.inProgress) { return; }
-  cleanupSearch()
+  cleanupSearch();
   await wait(240);
 
   toggleProgress(options.id);
