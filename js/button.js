@@ -4,15 +4,9 @@ for (let i = 0; i < buttons.length; ++i)
 {
   buttons[i].addEventListener('mouseenter', () =>
   {
-    let description = '';
-    if (buttonDetails[i].description.includes('X'))
-    {
-      description = buttonDetails[i].description.replace('X', `${state.x}`);
-    }
-
     view.info.classList.remove('hidden');
     view.time.innerHTML = buttonDetails[i].time;
-    view.description.innerHTML = description || buttonDetails[i].description;
+    updateDescription(i);
   });
 
   buttons[i].addEventListener('mouseleave', () =>
@@ -31,10 +25,22 @@ for (let i = 0; i < buttons.length; ++i)
     ++buttonId;
 
     buttonDetails[i].operation({ id: i });
+    updateDescription(i);
   });
 }
 
 function removeButtonClick(id)
 {
   document.getElementById(`${id}`).remove();
+}
+
+function updateDescription(id)
+{
+  let description = '';
+  if (buttonDetails[id].description.includes('X'))
+  {
+    description = buttonDetails[id].description.replace('X', `${state.x}`);
+  }
+
+  view.description.innerHTML = description || buttonDetails[id].description;
 }
