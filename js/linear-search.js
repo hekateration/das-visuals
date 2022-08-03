@@ -116,6 +116,7 @@ function generateX()
       index = (index + 1) % state.elements.length;
     }
     state.x = state.elements[index];
+    state.index = index;
   }
   else
   {
@@ -126,10 +127,6 @@ function generateX()
       state.x = randomInt(1, 100);
       isIncluded = state.elements.includes(state.x);
     }
-  }
-  state.index = state.elements.findIndex((el) => el === state.x);
-  if (state.index === -1)
-  {
     state.index = state.nElements - 1;
   }
 }
@@ -173,7 +170,12 @@ function cleanupSearch(callFrom)
   }
 }
 
-// Init
-state.inProgress = true;
-newList({ id: 1 });
-state.inProgress = false;
+async function init()
+{
+  state.inProgress = true;
+  await newList({ id: 1 });
+  state.inProgress = false;
+  updateTemplates();
+  updateInfo();
+}
+init();
