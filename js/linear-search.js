@@ -16,8 +16,10 @@ const buttonDetails =
   {
     time: 'Best O(1); Average O(n/2); Worst O(n)',
     description: 'Search for X within the list.',
+    descriptionTemplate: 'Search for X within the list.',
     operation: linearSearch,
-    progressTitle: 'Searching for X'
+    progressTitle: 'Searching for X',
+    progressTitleTemplate: 'Searching for X'
   },
   {
     time: 'O(1)',
@@ -27,27 +29,25 @@ const buttonDetails =
   }
 ];
 
-async function linearSearch(options)
+async function linearSearch()
 {
-  if (state.inProgress) { return; }
+  if (!state.inProgress) { return; }
   cleanupSearch();
   await wait(240);
 
-  toggleProgress(options.id);
   showNoYes();
   moveElements(0);
   await wait(state.index * 240 + 480);
 
   --state.nSearches;
   generateX();
-  setTimeout(toggleProgress, 360); // Set duration to 120
+  await wait(360);
 }
-async function newList(options)
+async function newList()
 {
-  if (state.inProgress) { return; }
+  if (!state.inProgress) { return; }
   cleanupSearch('newList')
 
-  toggleProgress(options.id);
   state.nElements = randomInt(5, 19);
   view.length.innerHTML = state.nElements;
 
@@ -59,28 +59,7 @@ async function newList(options)
   await wait(360);
   removeCovers();
   generateX();
-  setTimeout(toggleProgress, 120);
-}
-
-function toggleProgress(id)
-{
-  if (state.inProgress)
-  {
-    view.progress.classList.add('hidden');
-    state.inProgress = false;
-  }
-  else
-  {
-    let progress = '';
-    if (buttonDetails[id].progressTitle.includes('X'))
-    {
-      progress = buttonDetails[id].progressTitle.replace('X', `${state.x}`);
-    }
-
-    state.inProgress = true;
-    view.progressTitle.innerHTML = progress || buttonDetails[id].progressTitle;
-    view.progress.classList.remove('hidden');
-  }
+  await wait(120);
 }
 
 function dropCovers(id)
@@ -133,16 +112,21 @@ function generateX()
 {
   if (state.nSearches !== 0)
   {
-    state.x = state.elements[ randomInt(0, state.nElements-1) ];
+    let index = randomInt(0, state.nElements-1);
+    if (state.x === state.elements[index])
+    {
+      index = (index + 1) % state.elements.length;
+    }
+    state.x = state.elements[index];
   }
   else
   {
     state.nSearches = randomInt(1, 10);
-    let isUnique = true;
-    while (isUnique)
+    let isIncluded = true;
+    while (isIncluded)
     {
       state.x = randomInt(1, 100);
-      isUnique = state.elements.includes(state.x);
+      isIncluded = state.elements.includes(state.x);
     }
   }
   state.index = state.elements.findIndex((el) => el === state.x);
@@ -192,4 +176,6 @@ function cleanupSearch(callFrom)
 }
 
 // Init
+state.inProgress = true;
 newList({ id: 1 });
+state.inProgress = false;

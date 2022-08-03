@@ -271,6 +271,10 @@ button:hover:after
   opacity: 0;
   user-select: none;
 }
+.removed
+{
+  display: none;
+}
 
 .domain-info
 {
@@ -285,6 +289,10 @@ button:hover:after
   padding-bottom: 6px;
   overflow: hidden;
   transition: opacity .3s ease;
+}
+.info-inner
+{
+  height: 51px;
 }
 .progress
 {
@@ -338,4 +346,17 @@ button:hover:after
 @keyframes cant-progress-anime
 {
   to { left: 100%; }
+}
+
+.label-max
+{
+  padding: 2px 4px;
+  background-color: rgba(78, 51, 23,.3);
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: text-bottom;
+  letter-spacing: 1px;
 }

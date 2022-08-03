@@ -12,8 +12,10 @@ const buttonDetails =
   {
     time: 'O(1)',
     description: 'Add X to the top of the stack.',
+    descriptionTemplate: 'Add X to the top of the stack.',
     operation: push,
-    progressTitle: 'Adding X'
+    progressTitle: 'Adding X',
+    progressTitleTemplate: 'Adding X'
   },
   {
     time: 'O(1)',
@@ -29,15 +31,14 @@ const buttonDetails =
   }
 ];
 
-async function push(options)
+async function push()
 {
-  if (state.inProgress || state.length >= state.maxElements) { return; }
-  toggleProgress(options.id);
+  if (!state.inProgress || state.length >= state.maxElements) { return; }
 
   addElement();
+  await wait(500);
 
   generateX();
-  toggleProgress(options.id);
 }
 
 async function pop(options)
@@ -56,31 +57,15 @@ async function reverse(options)
   // todo reverse
 }
 
-function toggleProgress(id)
-{
-  if (state.inProgress)
-  {
-    view.progress.classList.add('hidden');
-    state.inProgress = false;
-  }
-  else
-  {
-    let progress = '';
-    if (buttonDetails[id].progressTitle.includes('X'))
-    {
-      progress = buttonDetails[id].progressTitle.replace('X', `${state.x}`);
-    }
-
-    state.inProgress = true;
-    view.progressTitle.innerHTML = progress || buttonDetails[id].progressTitle;
-    view.progress.classList.remove('hidden');
-  }
-}
-
 function addElement()
 {
   ++state.length;
-  view.length.innerHTML = state.length;
+  let maxLabel = '';
+  if (state.length === state.maxElements)
+  {
+    maxLabel = '<span class="label-max">max</span>';
+  }
+  view.length.innerHTML = state.length + maxLabel;
 
   view.top.innerHTML = state.x;
   view.isEmpty.innerHTML = (state.length < 0) + '';
@@ -97,17 +82,17 @@ function addElement()
 
 let nDirection = 0;
 let left = 0;
-const step = 6;
+const step = 3;
 let multiplier = 1;
 function calcStyle()
 {
   const length = state.length - 1;
-  const width = `${90 + length * 6}px`;
-  const height = `${120 + length * 6}px`;
+  const width = `${90 + length * step}px`;
+  const height = `${120 + length * step}px`;
   const fontSize = `${1 + length / 10}rem`;
-  const top = `${length * 6}px`;
+  const top = `${length * step}px`;
   let boxShadow = '0 0 2px rgba(0,0,0,.25)';
-  const lineHeight = `${120 + length * 6 - 2}px`;
+  const lineHeight = `${120 + length * step - 2}px`;
 
   ++nDirection;
   if (nDirection % 10 === 0)
@@ -124,8 +109,8 @@ function calcStyle()
 
 function moveStack()
 {
-  view.stack.style.top = `${150 - state.length * (step/2)}px`;
-  view.stack.style.left = `${300 - state.length * step}px`;
+  view.stack.style.top = `${- state.length * (6/2)}px`;
+  view.stack.style.left = `${- state.length * 6}px`;
 }
 
 function generateX()
