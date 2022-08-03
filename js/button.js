@@ -18,13 +18,19 @@ for (let i = 0; i < buttons.length; ++i)
 
   buttons[i].addEventListener('click', async () =>
   {
-    let cant = '';
-    if (state.inProgress) { cant = 'cant'; }
+    ++buttonId;
+    if (state.inProgress || atMaxLength(i))
+    {
+      buttons[i].insertAdjacentHTML('beforeend',
+        `<div id="${buttonId}" class="btn-hit cant"></div>`);
+      setTimeout(removeButtonClick, 1200, buttonId);
+      return;
+    }
 
     buttons[i].insertAdjacentHTML('beforeend',
-      `<div id="${buttonId}" class="btn-hit ${cant}"></div>`);
+      `<div id="${buttonId}" class="btn-hit"></div>`);
     setTimeout(removeButtonClick, 1200, buttonId);
-    ++buttonId;
+
 
     toggleProgress(i);
     await buttonDetails[i].operation({ id: i });
@@ -77,6 +83,11 @@ function updateInfo()
     const d = document.getElementById('description-' + i);
     d.innerHTML = bd[i].description;
   }
+}
+
+function atMaxLength(id)
+{
+  return state.length === state.maxElements && Object.hasOwn(buttonDetails[id], 'isAdder');
 }
 
 function initInfo()

@@ -31,7 +31,6 @@ const buttonDetails =
 
 async function linearSearch()
 {
-  if (!state.inProgress) { return; }
   cleanupSearch();
   await wait(240);
 
@@ -45,7 +44,6 @@ async function linearSearch()
 }
 async function newList()
 {
-  if (!state.inProgress) { return; }
   cleanupSearch('newList')
 
   state.nElements = randomInt(5, 19);

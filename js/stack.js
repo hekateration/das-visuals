@@ -15,7 +15,8 @@ const buttonDetails =
     descriptionTemplate: 'Add X to the top of the stack.',
     operation: push,
     progressTitle: 'Adding X',
-    progressTitleTemplate: 'Adding X'
+    progressTitleTemplate: 'Adding X',
+    isAdder: true
   },
   {
     time: 'O(1)',
@@ -33,8 +34,6 @@ const buttonDetails =
 
 async function push()
 {
-  if (!state.inProgress || state.length >= state.maxElements) { return; }
-
   addElement();
   await wait(500);
 
