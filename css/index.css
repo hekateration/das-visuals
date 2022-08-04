@@ -24,3 +24,23 @@ h3
 {
   margin-left: 120px;
 }
+
+.label
+{
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  vertical-align: bottom;
+}
+.label.wip
+{
+  background-color: rgba(126, 216, 141,.3);
+}
+.label.todo
+{
+  background-color: rgba(255,115,87,.3);
+}
