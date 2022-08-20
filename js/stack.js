@@ -62,7 +62,7 @@ function addElement()
   let maxLabel = '';
   if (state.length === state.maxElements)
   {
-    maxLabel = '<span class="label-max">max</span>';
+    maxLabel = '<span class="label max">max</span>';
   }
   view.length.innerHTML = state.length + maxLabel;
 

@@ -46,3 +46,8 @@
   text-align: center;
   font-size: 18px;
 }
+
+.label.max
+{
+  background-color: rgba(126, 203, 216, 0.3);
+}
