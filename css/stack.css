@@ -4,7 +4,7 @@
 }
 .sidebar
 {
-  width: 180px;
+  width: 190px;
 }
 
 .domain-stack
@@ -49,5 +49,6 @@
 
 .label.max
 {
+  margin-left: 6px;
   background-color: rgba(126, 203, 216, 0.3);
 }
