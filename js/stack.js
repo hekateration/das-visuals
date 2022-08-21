@@ -83,7 +83,7 @@ function removeElement()
   --state.length;
   view.length.innerHTML = state.length;
 
-  view.isEmpty.innerHTML = (state.length < 0) + '';
+  view.isEmpty.innerHTML = (state.length === 0) + '';
 
   view.stack.removeChild(view.stack.lastChild);
   moveStack();
