@@ -47,12 +47,13 @@ async function pop()
   await wait(500);
 }
 
-async function reverse(options)
+async function reverse()
 {
-  if (state.inProgress) { return; }
-  toggleProgress(options.id);
-
-  // todo reverse
+  if (state.length >= 2)
+  {
+    reverseElements(0);
+    await wait(Math.floor(state.length / 2) * 1200);
+  }
 }
 
 function addElement()
@@ -90,6 +91,36 @@ function removeElement()
   calcStyle('pop');
 }
 
+function reverseElements(index)
+{
+  const bot = view.stack.children[index];
+  const top = view.stack.children[state.length - 1 - index];
+
+  bot.style.transform = `translate3d(${-bot.clientWidth}px,0,0)`;
+  if (index)
+  {
+    top.style.transform = `translate3d(${top.clientWidth + index * 10}px,0,0)`;
+  }
+
+  setTimeout(() =>
+  {
+    const temp = bot.innerHTML;
+    bot.innerHTML = top.innerHTML;
+    top.innerHTML = temp;
+  }, 420);
+
+  setTimeout(() =>
+  {
+    bot.style.transform = `translate3d(0,0,0)`;
+    top.style.transform = `translate3d(0,0,0)`;
+  }, 1000);
+
+  if (index + 1 < Math.floor(state.length / 2))
+  {
+    setTimeout(reverseElements, 1200, index + 1);
+  }
+}
+
 let nDirection = 0;
 let left = 0;
 const step = 3;
@@ -98,12 +129,12 @@ function calcStyle(operation)
 {
   if (operation === 'pop')
   {
-    --nDirection;
     if (nDirection % 10 === 0)
     {
       multiplier = Math.floor(nDirection / 10) / 2 + 1;
     }
     left -= step * multiplier;
+    --nDirection;
 
     if (nDirection < 0)
     {

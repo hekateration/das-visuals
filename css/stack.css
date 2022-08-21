@@ -11,6 +11,8 @@
 {
   display: flex;
   justify-content: center;
+  height: 600px;
+  overflow: hidden;
 }
 .stack
 {
@@ -51,4 +53,9 @@
 {
   margin-left: 6px;
   background-color: rgba(126, 203, 216, 0.3);
+}
+
+#stack > div
+{
+  transition: transform .3s ease;
 }
