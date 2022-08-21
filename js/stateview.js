@@ -3,7 +3,8 @@ const state =
   inProgress: false,
   x: 0,
   nElements: 0,
-  maxElements: 0,
+  minElements: 0,
+  maxElements: 0, // Should be overwritten in DAS' script
 };
 
 const view =

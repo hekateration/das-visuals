@@ -22,7 +22,8 @@ const buttonDetails =
     time: 'O(1)',
     description: 'Delete the top element from the stack.',
     operation: pop,
-    progressTitle: 'Deleting top element'
+    progressTitle: 'Deleting top element',
+    isRemover: true
   },
   {
     time: 'O(n/2)',
@@ -42,10 +43,8 @@ async function push()
 
 async function pop(options)
 {
-  if (state.inProgress) { return; }
-  toggleProgress(options.id);
-
-  // todo pop
+  removeElement();
+  await wait(500);
 }
 
 async function reverse(options)
@@ -79,31 +78,59 @@ function addElement()
   view.stack.insertAdjacentHTML('beforeend', html);
 }
 
+function removeElement()
+{
+  --state.length;
+  view.length.innerHTML = state.length;
+
+  view.isEmpty.innerHTML = (state.length < 0) + '';
+
+  view.stack.removeChild(view.stack.lastChild);
+  moveStack();
+  calcStyle('pop');
+}
+
 let nDirection = 0;
 let left = 0;
 const step = 3;
 let multiplier = 1;
-function calcStyle()
+function calcStyle(operation)
 {
-  const length = state.length - 1;
-  const width = `${90 + length * step}px`;
-  const height = `${120 + length * step}px`;
-  const fontSize = `${1 + length / 10}rem`;
-  const top = `${length * step}px`;
-  let boxShadow = '0 0 2px rgba(0,0,0,.25)';
-  const lineHeight = `${120 + length * step - 2}px`;
-
-  ++nDirection;
-  if (nDirection % 10 === 0)
+  if (operation === 'pop')
   {
-    multiplier = Math.floor(nDirection / 10) / 2 + 1;
+    --nDirection;
+    if (nDirection % 10 === 0)
+    {
+      multiplier = Math.floor(nDirection / 10) / 2 + 1;
+    }
+    left -= step * multiplier;
+
+    if (nDirection < 0)
+    {
+      nDirection = 0;
+      left = 0;
+    }
   }
-  left += step * multiplier;
+  else
+  {
+    const length = state.length - 1;
+    const width = `${90 + length * step}px`;
+    const height = `${120 + length * step}px`;
+    const fontSize = `${1 + length / 10}rem`;
+    const top = `${length * step}px`;
+    let boxShadow = '0 0 2px rgba(0,0,0,.25)';
+    const lineHeight = `${120 + length * step - 2}px`;
 
+    ++nDirection;
+    if (nDirection % 10 === 0)
+    {
+      multiplier = Math.floor(nDirection / 10) / 2 + 1;
+    }
+    left += step * multiplier;
 
-
-  const leftString = `${left}px`;
-  return `width: ${width}; height: ${height}; font-size: ${fontSize}; top: ${top}; left: ${leftString}; box-shadow: ${boxShadow}; line-height: ${lineHeight};`;
+    const leftString = `${left}px`;
+    return `width: ${width}; height: ${height}; font-size: ${fontSize}; top: ${top}; left: ${leftString}; box-shadow: ${boxShadow}; line-height: ${lineHeight};`;
+  }
 }
 
 function moveStack()
