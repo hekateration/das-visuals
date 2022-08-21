@@ -41,7 +41,7 @@ async function push()
   generateX();
 }
 
-async function pop(options)
+async function pop()
 {
   removeElement();
   await wait(500);
