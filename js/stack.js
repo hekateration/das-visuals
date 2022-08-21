@@ -99,7 +99,9 @@ function reverseElements(index)
   bot.style.transform = `translate3d(${-bot.clientWidth}px,0,0)`;
   if (index)
   {
-    top.style.transform = `translate3d(${top.clientWidth + index * 10}px,0,0)`;
+    const lastChild = view.stack.lastChild;
+    const leftOffset = Number.parseFloat(lastChild.style.left) - Number.parseFloat(top.style.left) + lastChild.clientWidth;
+    top.style.transform = `translate3d(${leftOffset}px,0,0)`;
   }
 
   setTimeout(() =>
