@@ -52,7 +52,9 @@ async function reverse()
   if (state.length >= 2)
   {
     reverseElements(0);
-    await wait(Math.floor(state.length / 2) * 1200);
+    await wait(1200);
+    view.top.innerHTML = state.length === 0 ? 'null' : view.stack.lastChild.innerHTML;
+    await wait(Math.floor((state.length-1) / 2) * 1200);
   }
 }
 
@@ -87,6 +89,8 @@ function removeElement()
   view.isEmpty.innerHTML = (state.length === 0) + '';
 
   view.stack.removeChild(view.stack.lastChild);
+  view.top.innerHTML = state.length === 0 ? 'null' : view.stack.lastChild.innerHTML;
+
   moveStack();
   calcStyle('pop');
 }
