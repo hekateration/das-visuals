@@ -6,6 +6,7 @@
   <link rel="icon" type="image/png" href="../logo.png">
 
   <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/binary-search.css">
 </head>
 <body>
 
@@ -14,9 +15,59 @@
   <a href="https://github.com/hekateration">github.com/hekateration</a>
 </div>
 
-<div>Content</div>
+<div class="container">
+  <div class="sidebar">
+    <h1 class="title gt-alg">Binary Search</h1>
+    <div class="operations">
+      <div class="title">Operations</div>
+      <button id="search" type="button">Search(<span class="color-green-bright">x</span>)</button>
+      <button id="new-array" type="button">New Array</button>
+    </div>
+    <div class="states">
+      <div class="title">State</div>
+      <div class="state">Length: <span id="state-length">0</span></div>
+      <div class="state">Searches: <span id="state-searches">0</span></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="domain-info">
+      <div class="info">
+        <div id="info" class="info-inner"></div>
+        <div id="progress" class="progress hidden">
+          <div id="progress-title" class="progress-title">Searching</div>
+          <div id="progress-inner" class="progress-inner"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-cols">
+      <div class="domain-searches">
+        <div class="title">Searches</div>
+        <div class="search">1.</div>
+        <div class="search">2.</div>
+        <div class="search">3.</div>
+        <div class="search">4.</div>
+        <div class="search">5.</div>
+        <div class="search">6.</div>
+      </div>
+
+      <div class="domain-arrays">
+        <div class="array"></div>
+        <div class="array"></div>
+        <div class="array"></div>
+        <div class="array"></div>
+        <div class="array"></div>
+        <div class="array"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="footer">© <span class="text-muted">github.com/</span>hekateration</div>
 
+<script src="../js/util.js"></script>
+<script src="../js/stateview.js"></script>
+<script src="../js/binary-search.js"></script>
+<script src="../js/button.js"></script>
 </body>
 </html>

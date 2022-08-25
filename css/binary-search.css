@@ -1,0 +1,48 @@
+.info
+{
+  width: 440px;
+}
+
+.domain-cols
+{
+  display: flex;
+}
+
+.domain-searches .title
+{
+  color: var(--red-light);
+  line-height: 40px;
+}
+.domain-searches .search
+{
+  color: var(--red);
+  text-align: center;
+  font-size: 21px;
+  line-height: 30px;
+  margin-bottom: 60px;
+}
+
+.domain-arrays
+{
+  position: relative;
+  margin-top: 40px;
+}
+.domain-arrays .array
+{
+  position: relative;
+  display: flex;
+  margin-bottom: 60px;
+  padding-left: 1px;
+}
+.domain-arrays .array .element
+{
+  position: relative;
+  z-index: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: -1px;
+  border: 1px solid #333;
+  text-align: center;
+  line-height: 28px;
+  font-size: 14px;
+}
