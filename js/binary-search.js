@@ -112,7 +112,6 @@ function opacitizeElements(amount, direction)
 
 function generateArrayElements(left, right)
 {
-  const top = (state.searches - 1) * 90;
   const array = view.arrays[ state.searches ];
   for ( ; left <= right; ++left)
   {
