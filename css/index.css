@@ -25,12 +25,72 @@ h3
   margin-left: 120px;
 }
 
-
+ul li
+{
+  width: 180px;
+}
+.list-a a
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -20px;
+  padding-left: 26px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #e6e6e6;
+  line-height: 50px;
+}
+.list-a li:not(.muted) a:hover
+{
+  z-index: 100;
+  background-color: rgba(225, 202, 247,.06);
+  border-top-color: var(--purple-dark);
+  border-bottom-color: var(--purple-dark);
+}
+.list-a li.muted a:hover
+{
+  cursor: default;
+}
+.label
+{
+  padding: 3px 6px;
+  border-radius: 3px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  vertical-align: bottom;
+}
 .label.wip
 {
+
   background-color: rgba(126, 216, 141,.3);
 }
 .label.todo
 {
   background-color: rgba(255,115,87,.3);
+}
+/*
+  Lists
+ */
+ul
+{
+  padding-left: 20px;
+}
+ul li
+{
+  position: relative;
+  padding: 12px 0;
+}
+ul li::marker
+{
+  content: '⦾ ';
+  color: var(--purple-dark);
+}
+
+ul li.muted::marker, ul li.muted a
+{
+  color: #615c66;
 }
